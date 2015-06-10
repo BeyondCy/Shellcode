@@ -1,5 +1,5 @@
 ####Linux/x86 execve /bin/sh shellcode 21 bytes####
-#Greetz : KnocKout,curtis,Bomberman
+#Greetz : Bomberman
 
 Disassembly of section .text:
 
