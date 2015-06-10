@@ -1,5 +1,6 @@
 ####Linux/x86 execve /bin/sh shellcode 21 bytes####
 #Greetz : Bomberman
+#Author : B3mB4m
 
 Disassembly of section .text:
 
