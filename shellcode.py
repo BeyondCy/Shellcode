@@ -13,7 +13,6 @@ import re
 
 class B3mB4m(object):
 	def __init__(self):
-		self.helper()
 		self.generate = sys.argv[1]
 		self.cout = 0
 		self.fill = "/"
