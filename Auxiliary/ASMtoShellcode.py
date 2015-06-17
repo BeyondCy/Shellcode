@@ -54,6 +54,6 @@ There example;
 
 root@root:/home/b3mb4m/Desktop# python asmtoshellcode.py  XX.asm 
 
-\x31\xc0\x50\x68\x61\x64\x6f\x77\x68\x63 ....
+\x31\xc0\x50\x68\x61\x64\x6f\x77\x68\x63 ...
 
 */
