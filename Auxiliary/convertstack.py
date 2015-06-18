@@ -1,5 +1,14 @@
 import sys
 import re
+#Deprecated since version 2.6
+#The commands module has been removed in Python 3. Use the subprocess module instead.
+#I'm still using 2.x so fuck it lol.
+try:
+	from colorama import init,Fore
+	init()
+except:
+	print "Please, install colorama module!"
+	print "pip install colorama"
 
 #Author : B3mB4m
 #Greetz : Bomberman
@@ -11,7 +20,7 @@ import re
 #I'll add functional features as quickly as possible
 #I hope that can be help someone, so stay tuned ! :)  
 
-class B3mB4m(object):
+class pusher(object):
 	def __init__(self):
 		self.generate = sys.argv[1]
 		self.cout = 0
@@ -45,7 +54,8 @@ push 0x74652f2f
 			self.fill = self.fill * 2
 
 		if self.cout == 4: 
-			print "push 0x%s" % (hexme[::-1].encode('hex'))
+			stack = "push 0x%s" % (hexme[::-1].encode('hex'))
+			print(Fore.GREEN + stack)
 			sys.exit()
 
 		elif self.cout > 4:
@@ -76,8 +86,7 @@ push 0x74652f2f
 	def splitter(self, hexdump):
 		fixmesempai = re.findall('....?', hexdump)
 		for x in fixmesempai[::-1]:
-			print  "push 0x%s" % str(x[::-1].encode("hex"))
+			stack =  "push 0x%s" % str(x[::-1].encode("hex"))
+			print (Fore.GREEN + stack)
 
-if sys.argv[1] == "--help":
-	B3mB4m().helper() 
-else:
+pusher()
