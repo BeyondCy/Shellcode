@@ -45,7 +45,7 @@ push 0x74652f2f
 			self.fill = self.fill * 2
 
 		if self.cout == 4: 
-			print "push 0x%s" % (hexme.encode('hex')[::-1])
+			print "push 0x%s" % (hexme[::-1].encode('hex'))
 			sys.exit()
 
 		elif self.cout > 4:
