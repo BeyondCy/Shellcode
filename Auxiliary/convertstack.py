@@ -65,7 +65,7 @@ push 0x74652f2f
 				self.newlist[i] = putmein
 				fixstring = self.complie( self.newlist)
 				self.splitter(fixstring)
-			break;	
+				break;	
 
 	def complie(self, givemethatstring):
 		compliestring = ""
