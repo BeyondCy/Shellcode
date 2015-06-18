@@ -7,7 +7,6 @@ Linux/x86 - Netcat BindShell Port 5555 - 60 bytes
 
 Netcat openbsd version (which is default installed in ubuntu) have not "-e" option.
 So if you are trying to test on ubuntu(like me) you must change version to traditional.
-Traditional package allow a many other flags.
 
 Typing this:
 	1) sudo update-alternatives --config nc
