@@ -51,12 +51,12 @@ class complier(object):
 				os.remove(self.temporaryfile)
 			except Exception as errorlog:
 				print errorlog.message 
-				os.exit()
+				sys.exit()
 
 
 if __name__ == '__main__':
 	if os.getuid() != 0:
-		os.exit("You need to have root privileges to run this script.")
+		sys.exit("You need to have root privileges to run this script.")
 		#Because as you can see that script using terminal commands ..
 	else:	
 		complier()				
