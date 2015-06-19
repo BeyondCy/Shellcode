@@ -1,15 +1,14 @@
+import os
+import sys
+import commands
+
 class complier(object):
 	#Author : B3mB4m
 	#Greetz : Bomberman
 	#This script directly convert asm files to shellcode. 
 	#That's only pre-release will be append windows,nasm etc.. 
 	#Stay tuned ! 
-	
-	#Tested on : Ubuntu 14.04 
-	#Fıle type : ELF
-	#Versıon   : x86
-	
-	def __init__(self):
+	def __init__(self):	
 		self.target = sys.argv[1]
 		self.command1 = "nasm -f elf %s" % sys.argv[1]
 		self.filename = sys.argv[1].split(".")[0]
@@ -22,9 +21,16 @@ class complier(object):
 	def complie(self):
 		if "NASM version" not in commands.getoutput("nasm -v"):
 			print "You must install nasm complier .."
-			print "apt-get install nasm" 
-			os.exit()
-
+			print "Install command : apt-get install nasm" 
+			print "Please wait .."
+			command = 'apt-get install nasm' 
+			process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=None, shell=True).stdout.read()
+			if "NASM version" not in process.strip():
+				print "Install failed.Please install it manual."
+				sys.exit()
+			else:
+				print "Nasm installed.Process continues .. "	
+			
 		self.justincase()
 		coutme = 0
 		for i in self.getme:
@@ -34,7 +40,7 @@ class complier(object):
 					print "\n#WARNING : NULL BYTES HERE !#\n";
 					print "\n%s\n" % commands.getstatusoutput(i)[1]
 				else:
-					print "\n%s\n" % commands.getstatusoutput(i)[1]
+					print "\n%s\n" %  (commands.getstatusoutput(i)[1])
 			coutme += 1	
 		self.justincase()	
 
@@ -46,14 +52,11 @@ class complier(object):
 			except Exception as errorlog:
 				print errorlog.message 
 				os.exit()
-complier()
 
 
-/*
-There example;
-
-root@root:/home/b3mb4m/Desktop# python asmtoshellcode.py  XX.asm 
-
-\x31\xc0\x50\x68\x61\x64\x6f\x77\x68\x63 ...
-
-*/
+if __name__ == '__main__':
+	if os.getuid() != 0:
+		os.exit("You need to have root privileges to run this script.")
+		#Because as you can see that script using terminal commands ..
+	else:	
+		complier()				
