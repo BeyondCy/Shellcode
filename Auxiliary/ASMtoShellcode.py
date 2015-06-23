@@ -36,7 +36,7 @@ class complier(object):
 		for i in self.getme:
 			commands.getoutput(i)
 			if coutme == 2:
-				if "\x00" in commands.getstatusoutput(i)[1]:
+				if "x00" in commands.getstatusoutput(i)[1]:
 					print "\n#WARNING : NULL BYTES HERE !#\n";
 					print "\n%s\n" % commands.getstatusoutput(i)[1]
 				else:
