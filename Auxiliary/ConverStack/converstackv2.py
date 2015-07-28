@@ -78,7 +78,10 @@ class B3mB4mPusheR(object):
 			self.fill = self.fill * 2
 
 		if self.cout == 4: 
-			stack = "push word 0x%s" % (hexme[::-1].encode('hex'))
+			if self.syntaxtype == "Intel":
+				stack = "push 0x%s" % (hexme[::-1].encode('hex'))
+			elif self.syntaxtype == "AT&T":
+				stack = "push $0x%s" % (hexme[::-1].encode('hex'))
 			print(Fore.GREEN + stack)
 			sys.exit()
 			
@@ -130,7 +133,7 @@ class B3mB4mPusheR(object):
 	def syntaxtyper(self, getstring, dwordORword):
 		if self.syntaxtype == "Intel":
 			if dwordORword == "dword":
-				getstring = "push dword 0x%s" % getstring
+				getstring = "push  0x%s" % getstring
 				self.mylist.append(getstring)
 			elif dwordORword == "word":
 				getstring = "push  word 0x%s" % getstring
