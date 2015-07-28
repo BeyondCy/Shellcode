@@ -53,8 +53,12 @@ class B3mB4mPusheR(object):
 
 	def calculatorifstring(self, string):
 		if len(string) == 4:
-			stack = "push dword 0x%s" % (string[::-1].encode('hex'))
+			if self.syntaxtype == "Intel":
+				stack = "push 0x%s" % (string[::-1].encode('hex'))
+			elif self.syntaxtype == "AT&T":
+				stack = "push $0x%s" % (string[::-1].encode('hex'))
 			print(Fore.GREEN + stack)
+			sys.exit()
 		elif len(string) % 4 == 0:
 			self.splitter( string)
 		else:
