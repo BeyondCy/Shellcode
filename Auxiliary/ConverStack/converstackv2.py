@@ -14,7 +14,7 @@ except:
 #Author  : B3mB4m
 #Title   : Shellcode Helper(x86 Litle Endian Stack Converter)
 #Concat  : b3mb4m@gmail.com
-#Version : 0.2
+#Version : v2
 #Supported  AT&T - Intel Syntaxs
 #Most boring part shellcoding turning strings to stack but from now on its not !
 
