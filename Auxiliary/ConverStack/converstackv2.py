@@ -14,9 +14,10 @@ except:
 #Author  : B3mB4m
 #Title   : Shellcode Helper(x86 Litle Endian Stack Converter)
 #Concat  : b3mb4m@gmail.com
-#Version : v2
+#Version : v2 Final(I hope)
 #Supported  AT&T - Intel Syntaxs
 #Most boring part shellcoding turning strings to stack but from now on its not !
+#https://github.com/b3mb4m/Shellcode/tree/master/Auxiliary/ConverStack
 
 def helper():
 	print r"""	
