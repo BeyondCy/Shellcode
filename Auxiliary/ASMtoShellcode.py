@@ -41,6 +41,12 @@ class complier(object):
 					print "\n%s\n" % commands.getstatusoutput(i)[1]
 				else:
 					print "\n%s\n" %  (commands.getstatusoutput(i)[1])
+					newout = ""
+					for i in out:
+						append = "0x%s," % str(i.strip())
+						if append != "0x,":
+							newout += append
+					print newout[0:len(newout)-1] + "\n\n"
 			coutme += 1	
 		self.justincase()	
 
