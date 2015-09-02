@@ -1,12 +1,3 @@
-;Timekeeping in VMware Virtual Machines
-;https://en.wikipedia.org/wiki/Time_Stamp_Counter
-;http://www.aldeid.com/wiki
-;Description
-
-    ;The rdtsc (Read Time-Stamp Counter) instruction is used to determine how many CPU ticks took place since the processor was reset.
-    ;It is commonly used as a timing defense (anti-debugging technique).
-
-
 ;Coded By B3mB4m  
 ;Concat : b3mb4m@tuta.io   
 ; ___            _                             ___ 
