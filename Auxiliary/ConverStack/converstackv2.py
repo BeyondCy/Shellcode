@@ -127,7 +127,8 @@ class B3mB4mPusheR(object):
 			for x in fixmesempai[::-1]:
 				self.syntaxtyper( str(x[::-1].encode("hex")), "dword")
 		else:
-			fixmesempai = re.findall('..?', hexdump)
+			dot = "." * len(hexdump)
+			fixmesempai = re.findall(dot+'?', hexdump)
 			for x in fixmesempai[::-1]:
 				self.syntaxtyper( str(x[::-1].encode("hex")), "word")
 
