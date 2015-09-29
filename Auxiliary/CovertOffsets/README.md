@@ -1,7 +1,7 @@
-#Convert Script for Pythont
+#Convert Script for Python
 
-    *Support binary-decimal-hexdecimal-octal convert types .. 
-    *V2 will be include floating point numbers ..
+    #Support binary-decimal-hexdecimal-octal convert types .. 
+    #V2 will be include floating point numbers ..
 
     from convert import *
 
