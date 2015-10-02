@@ -130,7 +130,10 @@ class B3mB4mPusheR(object):
 			dot = "." * len(hexdump)
 			fixmesempai = re.findall(dot+'?', hexdump)
 			for x in fixmesempai[::-1]:
-				self.syntaxtyper( str(x[::-1].encode("hex")), "word")
+				if dot > 2:
+					self.syntaxtyper( str(x[::-1].encode("hex")), "dword")
+				else:
+					self.syntaxtyper( str(x[::-1].encode("hex")), "word")
 
 		for x in self.mylist:
 			print (Fore.GREEN + x)	
