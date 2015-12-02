@@ -6,7 +6,6 @@ class complier(object):
 	#Author : B3mB4m
 	#Greetz : Bomberman
 	#This script directly convert asm files to shellcode. 
-	#That's only pre-release will be append windows,nasm etc.. 
 	#Stay tuned ! 
 	def __init__(self):	
 		self.target = sys.argv[1]
