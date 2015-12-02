@@ -6,7 +6,7 @@ import sys
 #02.12.2015
 
 def getOPcodes( exe):
-	pe = pefile.PE('calc.exe')
+	pe = pefile.PE( exe)
 	db = pe.sections[0].get_data().encode("hex")
 	db = db.split("ffffffff00000000ffffffff")[0]
 	db = re.findall("..?", db)
