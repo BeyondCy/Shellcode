@@ -4,6 +4,7 @@ import sys
 
 #Coded By B3mB4m
 #02.12.2015
+#This script made for windows shellcoders(Get shellcodes an exe without any effort)
 
 def getOPcodes( exe):
 	pe = pefile.PE( exe)
