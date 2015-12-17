@@ -1,0 +1,166 @@
+#If you think is there any problem about offset or something let me know.
+#b3mb4m@protonmail.com
+#Key:pastebin.com/RnMHuedc
+
+struct _TEB {
+
+	0x00 _NT_TIB NtTib;
+	0x1c void* EnvironmentPointer;
+	0x20 _CLIENT_ID ClientId;
+	0x28 void* ActiveRpcHandle;
+	0x2c void* ThreadLocalStoragePointer;
+	//0x30 _PEB* ProcessEnvironmentBlock; 
+	struct _PEB {
+		0x00 BYTE InheritedAddressSpace;
+		0x01 BYTE ReadImageFileExecOptions;
+		0x02 BYTE BeingDebugged;
+		0x03 BYTE SpareBool;
+		0x04 void* Mutant;
+		0x08 void* ImageBaseAddress;
+		//0x0c _PEB_LDR_DATA* Ldr;
+		struct _PEB_LDR_DATA{
+			0x00  ULONG			Length;
+			0x04  BOOLEAN		Initialized;
+			0x08  PVOID			SsHandle;
+			0x0c  LIST_ENTRY	InLoadOrderModuleList;
+			0x14  LIST_ENTRY	InMemoryOrderModuleList;
+			//0x1c  LIST_ENTRY	InInitializationOrderModuleList;
+			struct _LDR_DATA_TABLE_ENTRY
+			{
+				  LIST_ENTRY InLoadOrderLinks;
+				  LIST_ENTRY InMemoryOrderModuleList;
+				  LIST_ENTRY InInitializationOrderModuleList;
+				  --> PVOID DllBase;
+						mov eax,[fs:0x30] 
+						mov eax,[eax+0xc]
+						mov eax,[eax+0x14]
+						mov eax,[eax]
+						mov eax,[eax]
+						mov eax,[eax+0x10] <-- PVOID Dllbase --> KERNEL32.DLL
+				  PVOID EntryPoint;
+				  ULONG SizeOfImage;
+				  UNICODE_STRING FullDllName;
+				  UNICODE_STRING BaseDllName;
+			} ;	
+			0x24  UINT8_T 		EntryInProcess;
+		};
+
+		0x10 _RTL_USER_PROCESS_PARAMETERS* ProcessParameters;
+		0x14 void* SubSystemData;
+		0x18 void* ProcessHeap;
+		0x1c _RTL_CRITICAL_SECTION* FastPebLock;
+		0x20 void* FastPebLockRoutine;
+		0x24 void* FastPebUnlockRoutine;
+		0x28 DWORD EnvironmentUpdateCount;
+		0x2c void* KernelCallbackTable;
+		0x30 DWORD SystemReserved[1];
+		0x34 DWORD ExecuteOptions:2; // bit offset: 34, len=2
+		0x34 DWORD SpareBits:30; // bit offset: 34, len=30
+		0x38 _PEB_FREE_BLOCK* FreeList;
+		0x3c DWORD TlsExpansionCounter;
+		0x40 void* TlsBitmap;
+		0x44 DWORD TlsBitmapBits[2];
+		0x4c void* ReadOnlySharedMemoryBase;
+		0x50 void* ReadOnlySharedMemoryHeap;
+		0x54 void** ReadOnlyStaticServerData;
+		0x58 void* AnsiCodePageData;
+		0x5c void* OemCodePageData;
+		0x60 void* UnicodeCaseTableData;
+		0x64 DWORD NumberOfProcessors;
+		0x68 DWORD NtGlobalFlag;
+		0x70 _LARGE_INTEGER CriticalSectionTimeout;
+		0x78 DWORD HeapSegmentReserve;
+		0x7c DWORD HeapSegmentCommit;
+		0x80 DWORD HeapDeCommitTotalFreeThreshold;
+		0x84 DWORD HeapDeCommitFreeBlockThreshold;
+		0x88 DWORD NumberOfHeaps;
+		0x8c DWORD MaximumNumberOfHeaps;
+		0x90 void** ProcessHeaps;
+		0x94 void* GdiSharedHandleTable;
+		0x98 void* ProcessStarterHelper;
+		0x9c DWORD GdiDCAttributeList;
+		0xa0 void* LoaderLock;
+		0xa4 DWORD OSMajorVersion;
+		0xa8 DWORD OSMinorVersion;
+		0xac WORD OSBuildNumber;
+		0xae WORD OSCSDVersion;
+		0xb0 DWORD OSPlatformId;
+		0xb4 DWORD ImageSubsystem;
+		0xb8 DWORD ImageSubsystemMajorVersion;
+		0xbc DWORD ImageSubsystemMinorVersion;
+		0xc0 DWORD ImageProcessAffinityMask;
+		0xc4 DWORD GdiHandleBuffer[34];
+		0x14c void (*PostProcessInitRoutine)();
+		0x150 void* TlsExpansionBitmap;
+		0x154 DWORD TlsExpansionBitmapBits[32];
+		0x1d4 DWORD SessionId;
+		0x1d8 _ULARGE_INTEGER AppCompatFlags;
+		0x1e0 _ULARGE_INTEGER AppCompatFlagsUser;
+		0x1e8 void* pShimData;
+		0x1ec void* AppCompatInfo;
+		0x1f0 _UNICODE_STRING CSDVersion;
+		0x1f8 void* ActivationContextData;
+		0x1fc void* ProcessAssemblyStorageMap;
+		0x200 void* SystemDefaultActivationContextData;
+		0x204 void* SystemAssemblyStorageMap;
+		0x208 DWORD MinimumStackCommit;
+	);
+	0x34 DWORD LastErrorValue;
+	0x38 DWORD CountOfOwnedCriticalSections;
+	0x3c void* CsrClientThread;
+	0x40 void* Win32ThreadInfo;
+	0x44 DWORD User32Reserved[26];
+	0xac DWORD UserReserved[5];
+	0xc0 void* WOW32Reserved;
+	0xc4 DWORD CurrentLocale;
+	0xc8 DWORD FpSoftwareStatusRegister;
+	0xcc void* SystemReserved1[54];
+	0x1a4 int ExceptionCode;
+	0x1a8 _ACTIVATION_CONTEXT_STACK ActivationContextStack;
+	0x1bc DWORD SpareBytes1[24];
+	0x1d4 _GDI_TEB_BATCH GdiTebBatch;
+	0x6b4 _CLIENT_ID RealClientId;
+	0x6bc void* GdiCachedProcessHandle;
+	0x6c0 DWORD GdiClientPID;
+	0x6c4 DWORD GdiClientTID;
+	0x6c8 void* GdiThreadLocalInfo;
+	0x6cc DWORD Win32ClientInfo[62];
+	0x7c4 void* glDispatchTable[233];
+	0xb68 DWORD glReserved1[29];
+	0xbdc void* glReserved2;
+	0xbe0 void* glSectionInfo;
+	0xbe4 void* glSection;
+	0xbe8 void* glTable;
+	0xbec void* glCurrentRC;
+	0xbf0 void* glContext;
+	0xbf4 DWORD LastStatusValue;
+	0xbf8 _UNICODE_STRING StaticUnicodeString;
+	0xc00 WORD StaticUnicodeBuffer[261];
+	0xe0c void* DeallocationStack;
+	0xe10 void* TlsSlots[64];
+	0xf10 _LIST_ENTRY TlsLinks;
+	0xf18 void* Vdm;
+	0xf1c void* ReservedForNtRpc;
+	0xf20 void* DbgSsReserved[2];
+	0xf28 DWORD HardErrorsAreDisabled;
+	0xf2c void* Instrumentation[16];
+	0xf6c void* WinSockData;
+	0xf70 DWORD GdiBatchCount;
+	0xf74 UChar InDbgPrint;
+	0xf75 UChar FreeStackOnTermination;
+	0xf76 UChar HasFiberData;
+	0xf77 UChar IdealProcessor;
+	0xf78 DWORD Spare3;
+	0xf7c void* ReservedForPerf;
+	0xf80 void* ReservedForOle;
+	0xf84 DWORD WaitingOnLoaderLock;
+	0xf88 _Wx86ThreadState Wx86Thread;
+	0xf94 void** TlsExpansionSlots;
+	0xf98 DWORD ImpersonationLocale;
+	0xf9c DWORD IsImpersonating;
+	0xfa0 void* NlsCache;
+	0xfa4 void* pShimData;
+	0xfa8 DWORD HeapVirtualAffinity;
+	0xfac void* CurrentTransactionHandle;
+	0xfb0 _TEB_ACTIVE_FRAME* ActiveFrame;
+};
